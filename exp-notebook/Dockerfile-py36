@@ -14,7 +14,7 @@ RUN rm -rf /tmp/src/.git* && \
     rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
     rpm -Uvh --force http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm  && \
     yum install -y ffmpeg ffmpeg-devel && \
-    yum install -y graphviz-gd
+    rpm -Uvh --force http://rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/graphviz-2.30.1-21.el7.x86_64.rpm
 
 ENV XDG_CACHE_HOME=/opt/app-root/src/.cache
 
