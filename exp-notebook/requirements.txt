@@ -29,6 +29,8 @@ s3contents==0.1.12
 opencv-contrib-python-headless==4.1.*
 pydotplus==2.0.*
 resampy==0.2.*
+imutils==0.5.*
+filterpy==1.4.*
 
 ### tensorflow-notebook
 
