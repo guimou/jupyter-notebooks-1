@@ -31,6 +31,8 @@ pydotplus==2.0.*
 resampy==0.2.*
 imutils==0.5.*
 filterpy==1.4.*
+mysql-connector==2.2.*
+psycopg2==2.8.*
 
 ### tensorflow-notebook
 
