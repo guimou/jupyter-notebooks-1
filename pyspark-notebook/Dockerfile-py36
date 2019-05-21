@@ -30,7 +30,7 @@ ENV APACHE_SPARK_VERSION 2.4.3
 ENV HADOOP_VERSION 2.7
 
 RUN yum -y update && \
-    yum install --no-install-recommends -y openjdk-8-jre-headless ca-certificates-java && \
+    yum install -y openjdk-8-jre-headless ca-certificates-java && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp && \
