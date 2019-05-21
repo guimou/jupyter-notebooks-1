@@ -21,7 +21,7 @@ ENV XDG_CACHE_HOME=/opt/app-root/src/.cache
 
 USER 1001
 
-RUN /tmp/scripts/assemble
+RUN chmod +x /tmp/scripts/assemble && /tmp/scripts/assemble
 
 CMD [ "/opt/app-root/builder/run" ]
 
