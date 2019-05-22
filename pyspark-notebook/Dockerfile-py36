@@ -34,10 +34,11 @@ RUN yum -y update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt && \
-    wget http://www-eu.apache.org/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz && \
-    tar -xzf spark-2.2.1-bin-hadoop2.7.tgz
+    wget http://www-eu.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz && \
+	
+    tar -xzf spark-2.4.3-bin-hadoop2.7.tgz
     
-RUN ln -s /opt/spark-2.2.1-bin-hadoop2.7  /opt/spark
+RUN ln -s /opt/spark-2.4.3-bin-hadoop2.7  /opt/spark
 
 # Mesos dependencies
 # Install from the Xenial Mesosphere repository since there does not (yet)
