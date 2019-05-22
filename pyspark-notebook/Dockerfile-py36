@@ -34,7 +34,7 @@ RUN yum -y update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt && \
-    wget -q http://www-eu.apache.org/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz && \
+    wget http://www-eu.apache.org/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz && \
     tar -xzf spark-2.2.1-bin-hadoop2.7.tgz
     
 RUN ln -s /opt/spark-2.2.1-bin-hadoop2.7  /opt/spark
@@ -47,7 +47,7 @@ RUN rpm -Uvh http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.
 RUN yum -y install mesos mesosphere-zookeeper
 
 # Spark and Mesos config
-ENV SPARK_HOME /usr/local/spark
+ENV SPARK_HOME /opt
 ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip
 ENV MESOS_NATIVE_LIBRARY /usr/local/lib/libmesos.so
 ENV SPARK_OPTS --driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info
