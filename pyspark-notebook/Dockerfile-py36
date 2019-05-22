@@ -30,7 +30,7 @@ ENV APACHE_SPARK_VERSION 2.4.3
 ENV HADOOP_VERSION 2.7
 
 RUN yum -y update && \
-    yum install java-1.8.0-openjdk-headless && \
+    yum install -y java-1.8.0-openjdk-headless && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp && \
@@ -43,15 +43,9 @@ RUN cd /usr/local && ln -s spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERS
 # Mesos dependencies
 # Install from the Xenial Mesosphere repository since there does not (yet)
 # exist a Bionic repository and the dependencies seem to be compatible for now.
-COPY mesos.key /tmp/
-RUN yum -y update && \
-    yum install --no-install-recommends -y gnupg && \
-    apt-key add /tmp/mesos.key && \
-    echo "deb http://repos.mesosphere.io/ubuntu xenial main" > /etc/apt/sources.list.d/mesosphere.list && \
-    yum -y update && \
-    yum --no-install-recommends -y install mesos=1.2\* && \
-    yum purge --auto-remove -y gnupg && \
-    rm -rf /var/lib/apt/lists/*
+
+RUN rpm -Uvh http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm  
+	sudo yum -y install mesos mesosphere-zookeeper
 
 # Spark and Mesos config
 ENV SPARK_HOME /usr/local/spark
