@@ -45,7 +45,7 @@ RUN cd /usr/local && ln -s spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERS
 # exist a Bionic repository and the dependencies seem to be compatible for now.
 
 RUN rpm -Uvh http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm  
-	yum -y install mesos mesosphere-zookeeper
+	 && yum -y install mesos mesosphere-zookeeper
 
 # Spark and Mesos config
 ENV SPARK_HOME /usr/local/spark
