@@ -35,7 +35,7 @@ RUN yum -y update && \
 
 RUN cd /opt && \
     wget -q http://www-eu.apache.org/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz && \
-    tar -xzf spark-2.2.1-bin-hadoop2.7.tgz && \
+    tar -xzf spark-2.2.1-bin-hadoop2.7.tgz
     
 RUN ln -s /opt/spark-2.2.1-bin-hadoop2.7  /opt/spark
 
