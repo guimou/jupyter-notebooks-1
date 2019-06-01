@@ -1,4 +1,4 @@
-FROM docker-registry.default.svc:5000/jupyterhubul/s2i-minimal-notebook-s3:3.6
+FROM radanalyticsio/openshift-spark-py36:2.4.0-1
 
 USER root
 
@@ -9,56 +9,12 @@ RUN rm -rf /tmp/src/.git* && \
     chgrp -R 0 /tmp/src && \
     chmod -R g+w /tmp/src && \
     rm -rf /tmp/scripts && \
-    mv /tmp/src/.s2i/bin /tmp/scripts && \
-    yum install -y epel-release && \
-    rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
-    rpm -Uvh --force http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm  && \
-    yum install -y ffmpeg ffmpeg-devel && \
-    yum install -y graphviz-gd
-
+    mv /tmp/src/.s2i/bin /tmp/scripts
 
 ENV XDG_CACHE_HOME=/opt/app-root/src/.cache
 
+USER 1001
 
+RUN /tmp/scripts/assemble
 
-RUN chmod +x /tmp/scripts/assemble && /tmp/scripts/assemble
-
-
-
-# Spark dependencies
-ENV APACHE_SPARK_VERSION 2.4.3
-ENV HADOOP_VERSION 2.7
-
-RUN yum -y update && \
-    yum install -y java-1.8.0-openjdk-headless && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN cd /opt && \
-    wget http://www-eu.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz && \
-	
-    tar -xzf spark-2.4.3-bin-hadoop2.7.tgz
-    
-RUN ln -s /opt/spark-2.4.3-bin-hadoop2.7  /opt/spark
-
-# Mesos dependencies
-# Install from the Xenial Mesosphere repository since there does not (yet)
-# exist a Bionic repository and the dependencies seem to be compatible for now.
-
-RUN rpm -Uvh http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm  
-RUN yum -y install mesos mesosphere-zookeeper
-
-# Spark and Mesos config
-ENV SPARK_HOME /opt
-ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip
-ENV MESOS_NATIVE_LIBRARY /usr/local/lib/libmesos.so
-ENV SPARK_OPTS --driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info
-
-# USER $NB_UID
-
-# Install pyarrow
-RUN pip install --quiet pyarrow && \
-    fix-permissions $CONDA_DIR && \
-    fix-permissions /home/$NB_USER
-	
-USER 1001	
 CMD [ "/opt/app-root/builder/run" ]
