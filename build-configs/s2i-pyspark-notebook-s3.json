@@ -54,7 +54,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "radanalyticsio/openshift-spark-py36:2.4.0-1"
+                            "name": "s2i-spark-py36"
                         },
                         "dockerfilePath": "Dockerfile-py36"
                     }

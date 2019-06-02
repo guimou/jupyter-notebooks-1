@@ -1,0 +1,27 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "image.openshift.io/v1",
+            "metadata": {
+                "name": "s2i-spark-py36"
+            },
+            "spec": {
+                "lookupPolicy": {
+                    "local": true
+                },
+                "tags": [
+                    {
+                        "name": "3.6",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "radanalyticsio/openshift-spark-py36:2.4.0-1"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
