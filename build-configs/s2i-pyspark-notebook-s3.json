@@ -54,7 +54,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "s2i-spark-py36"
+                            "name": "s2i-spark-py36:3.6"
                         },
                         "dockerfilePath": "Dockerfile-py36"
                     }
