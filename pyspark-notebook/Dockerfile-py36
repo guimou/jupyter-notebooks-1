@@ -10,9 +10,7 @@ RUN rm -rf /tmp/src/.git* && \
     chmod -R g+w /tmp/src && \
     rm -rf /tmp/scripts && \
     mv /tmp/src/.s2i/bin /tmp/scripts && \
-    yum install -y epel-release && \
-    yum install -y centos-release-scl && \
-    yum install -y rh-python36
+    python -m ensurepip --default-pip
 
 USER 1001
 
