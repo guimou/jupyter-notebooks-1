@@ -39,3 +39,6 @@ tornado<6.0.0
 tqdm==4.31.*
 vincent==0.4.*
 xlrd==1.2.*
+
+### pyspark
+pyspark==2.4.3
