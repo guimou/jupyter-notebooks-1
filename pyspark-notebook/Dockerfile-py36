@@ -11,7 +11,8 @@ RUN rm -rf /tmp/src/.git* && \
     rm -rf /tmp/scripts && \
     mv /tmp/src/.s2i/bin /tmp/scripts && \
     yum install -y epel-release && \
-    yum install -y python-pip
+    yum install -y centos-release-scl && \
+    yum install -y rh-python36
 
 USER 1001
 
