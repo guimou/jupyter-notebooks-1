@@ -27,7 +27,7 @@ protobuf==3.*
 psycopg2==2.8.*
 pydotplus==2.0.*
 resampy==0.2.*
-s3contents==0.1.12
+s3contents==0.1.13
 scikit-image==0.14.*
 scikit-learn==0.20.*
 scipy==1.1.*
