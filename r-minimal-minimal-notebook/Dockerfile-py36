@@ -1,0 +1,30 @@
+FROM centos/python-36-centos7:latest
+
+USER root
+
+COPY . /tmp/src
+
+RUN rm -rf /tmp/src/.git* && \
+    chown -R 1001 /tmp/src && \
+    chgrp -R 0 /tmp/src && \
+    chmod -R g+w /tmp/src && \
+    rm -rf /tmp/scripts && \
+    mv /tmp/src/.s2i/bin /tmp/scripts
+	
+USER 1001
+
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+RUN chmod +x Miniconda3-latest-Linux-x86_64.sh && ./Miniconda3-latest-Linux-x86_64.sh -b
+
+RUN /opt/app-root/src/miniconda3/bin/conda install -y -c r r-irkernel
+
+RUN echo "IRkernel::installspec()" > /tmp/install.r && /opt/app-root/src/miniconda3/bin/R -f /tmp/install.r 
+
+ENV XDG_CACHE_HOME=/opt/app-root/src/.cache
+
+USER 1001
+
+RUN /tmp/scripts/assemble
+
+CMD [ "/opt/app-root/builder/run" ]
