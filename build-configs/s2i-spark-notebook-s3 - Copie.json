@@ -47,7 +47,7 @@
                         "uri": "https://github.com/mayeuldalzon/jupyter-notebooks-s3",
                         "ref": "master"
                     },
-                    "contextDir": "spark-notebook"
+                    "contextDir": "rhel"
                 },
                 "strategy": {
                     "type": "Docker",
