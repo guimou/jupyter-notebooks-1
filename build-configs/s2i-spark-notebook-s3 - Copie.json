@@ -54,7 +54,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "rheltest"
+                            "name": "rheltest:latest"
                         },
                         "dockerfilePath": "rheltest"
                     }
