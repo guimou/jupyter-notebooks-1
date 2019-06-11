@@ -54,7 +54,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "rheltest:3.6"
+                            "name": "rheltest"
                         },
                         "dockerfilePath": "rheltest"
                     }
@@ -62,7 +62,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "rheltest:3.6"
+                        "name": "rheltest"
                     }
                 },
                 "resources": {
