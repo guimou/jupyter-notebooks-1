@@ -44,7 +44,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/mayeuldalzon/jupyter-notebooks-s3",
+                        "uri": "https://github.com/guimou/jupyter-notebooks-s3",
                         "ref": "master"
                     },
                     "contextDir": "rhel"
