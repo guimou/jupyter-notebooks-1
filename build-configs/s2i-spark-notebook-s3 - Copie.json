@@ -62,7 +62,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "rheltest"
+                        "name": "rheltest:latest"
                     }
                 },
                 "resources": {
