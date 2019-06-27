@@ -1,4 +1,4 @@
-FROM brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/redhat-sso-7/sso73:jb-sso-7.3-rhel-7-containers-candidate-10558-20190109234027
+FROM rhscl/python-36-rhel7
 
 USER root
 
