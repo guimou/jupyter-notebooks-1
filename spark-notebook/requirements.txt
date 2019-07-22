@@ -29,3 +29,5 @@ s3contents==0.1.12
 opencv-python==4.1.*
 pydotplus==2.0.*
 resampy==0.2.*
+pyspark==2.4.*
+findspark==1.3.*
