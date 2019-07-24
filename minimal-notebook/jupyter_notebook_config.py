@@ -29,5 +29,5 @@ if os.environ.get("AWS_ACCESS_KEY_ID"):
     c.NotebookApp.contents_manager_class = S3ContentsManager
     c.S3ContentsManager.access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
     c.S3ContentsManager.secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    c.S3ContentsManager.endpoint_url = os.environ.get("S3_ENPOINT_URL")
+    c.S3ContentsManager.endpoint_url = os.environ.get("S3_ENDPOINT_URL")
     c.S3ContentsManager.bucket = 'valeria-users-' + os.environ.get("JUPYTERHUB_USER")
