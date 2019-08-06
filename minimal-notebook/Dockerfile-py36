@@ -1,5 +1,5 @@
 FROM centos/python-36-centos7:latest
-
+ARG JUPYTERHUB_VERSION=1.0.0
 USER root
 
 COPY . /tmp/src
