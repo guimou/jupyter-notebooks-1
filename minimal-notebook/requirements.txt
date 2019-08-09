@@ -11,3 +11,4 @@ botocore==1.12.205
 git+https://github.com/guimou/pgcontents.git@nb6
 # s3contents==0.1.13
 git+https://github.com/guimou/s3contents.git@nb6
+fsspec==0.4.1
