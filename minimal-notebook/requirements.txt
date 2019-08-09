@@ -7,6 +7,7 @@ dask==2.2.0
 distributed==2.2.0
 tornado==6.0.3
 botocore==1.12.205
-pgcontents==0.5.3
+# pgcontents==0.5.3
+git+https://github.com/guimou/pgcontents.git@nb6
 # s3contents==0.1.13
-git+https://github.com/guimou/s3contents.git@43b57de77a61faa2b83cd550d4939baf3fa9317f
+git+https://github.com/guimou/s3contents.git@nb6
