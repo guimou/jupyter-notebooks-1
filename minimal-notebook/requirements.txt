@@ -1,7 +1,8 @@
 notebook==6.0.0
 jupyterhub==1.0.0
 jupyterlab==1.0.4
-jupyter_kernel_gateway==2.3.0
+# jupyter_kernel_gateway==2.3.0
+git+https://github.com/jupyter/kernel_gateway.git@ae4a46398bc3dda66933c82d9f718f27f105e1c8
 dask==2.2.0
 distributed==2.2.0
 tornado==6.0.3
