@@ -27,8 +27,7 @@ from s3contents import S3ContentsManager
 from pgcontents.hybridmanager import HybridContentsManager
 from notebook.services.contents.filemanager import FileContentsManager
 
-# Intialize Hybrid Contents Manager with local silesystem
-c.HybridContentsManager.manager_classes = {
+HCM_mg = {
     # Associate the root directory with a FileContentsManager.
     # This manager will receive all requests that don't fall under any of the
     # other managers.
@@ -50,10 +49,13 @@ if (aws_access_key_id and aws_access_key_id!='none'):
                         aws_secret_access_key = aws_secret_access_key,
                         use_ssl = True if 'https' in endpoint_url else False )
     for bucket in s3.buckets.all():
-        c.HybridContentsManager.manager_classes.update({'datalake/'+bucket.name: S3ContentsManager})
+        HCM_mg.update({'datalake/'+bucket.name: S3ContentsManager})
 
 
-c.HybridContentsManager.manager_kwargs = {
+# Intialize Hybrid Contents Manager with local silesystem
+c.HybridContentsManager.manager_classes = HCM
+
+HCM_mk = {
     # Args for the FileContentsManager mapped to /directory
     'directory': {
         'root_dir': '/users'
@@ -63,11 +65,15 @@ c.HybridContentsManager.manager_kwargs = {
 if (aws_access_key_id and aws_access_key_id!='none'):
     # We don't have to reinitialize the connection, thanks for "for" not being scoped
     for bucket in s3.buckets.all():
-        c.HybridContentsManager.manager_kwargs.update({'datalake/'+bucket.name: {
+        HCM_mk.update({'datalake/'+bucket.name: {
             'access_key_id': aws_access_key_id,
             'secret_access_key': aws_secret_access_key,
             'endpoint_url': endpoint_url,
             'bucket': bucket.name
         } })
+
+c.HybridContentsManager.manager_kwargs = HCM_mk
+
+
 
 
