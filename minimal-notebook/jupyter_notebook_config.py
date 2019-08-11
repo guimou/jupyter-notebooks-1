@@ -21,21 +21,37 @@ if os.path.exists(image_config_file):
         exec(compile(fp.read(), image_config_file, 'exec'), globals())
 
 
-# directories configuration
+# Directories configuration
+import boto3
 from s3contents import S3ContentsManager
 from pgcontents.hybridmanager import HybridContentsManager
 from notebook.services.contents.filemanager import FileContentsManager
 
-c.NotebookApp.contents_manager_class = HybridContentsManager
-
+# Intialize Hybrid Contents Manager with local silesystem
 c.HybridContentsManager.manager_classes = {
     # Associate the root directory with a FileContentsManager.
     # This manager will receive all requests that don't fall under any of the
     # other managers.
-    '': FileContentsManager,
-    # Associate /directory with a S3ContentsManager.
-    'datalake': S3ContentsManager
+    '': FileContentsManager
 }
+
+# Get S3 creds from environment
+aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
+endpoint_url = os.environ.get("S3_ENDPOINT_URL")
+
+# Check if S3 informations are there
+if (aws_access_key_id and aws_access_key_id!='none'):
+    # Initialize S3 connection (us-east-1 seems to be needed even when it is not used, in Ceph for example)
+    # Last line to provide for test environment with no https
+    s3 = boto3.resource('s3','us-east-1',
+                        endpoint_url=endpoint_url,
+                        aws_access_key_id = aws_access_key_id,
+                        aws_secret_access_key = aws_secret_access_key,
+                        use_ssl = True if 'https' in endpoint_url else False )
+    for bucket in s3.buckets.all():
+        c.HybridContentsManager.manager_classes.update({'datalake/'+bucket.name: S3ContentsManager})
+
 
 c.HybridContentsManager.manager_kwargs = {
     # Args for the FileContentsManager mapped to /directory
@@ -52,10 +68,14 @@ c.HybridContentsManager.manager_kwargs = {
     }
 }
 
-""" # Tell Jupyter to use S3ContentsManager for all storage.
-if os.environ.get("AWS_ACCESS_KEY_ID")!='none':
-    c.NotebookApp.contents_manager_class = S3ContentsManager
-    c.S3ContentsManager.access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
-    c.S3ContentsManager.secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    c.S3ContentsManager.endpoint_url = os.environ.get("S3_ENDPOINT_URL")
-    c.S3ContentsManager.bucket = 'valeria-users-' + os.environ.get("JUPYTERHUB_USER") """
+if (aws_access_key_id and aws_access_key_id!='none'):
+    # We don't have to reinitialize the connection, thanks for "for" not being scoped
+    for bucket in s3.buckets.all():
+        c.HybridContentsManager.manager_kwargs.update({'datalake/'+bucket.name: {
+            'access_key_id': aws_access_key_id,
+            'secret_access_key': aws_secret_access_key,
+            'endpoint_url': endpoint_url,
+            'bucket': bucket.name
+        } })
+
+
