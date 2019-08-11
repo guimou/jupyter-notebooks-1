@@ -57,14 +57,6 @@ c.HybridContentsManager.manager_kwargs = {
     # Args for the FileContentsManager mapped to /directory
     'directory': {
         'root_dir': '/users'
-    },
-
-    # S3ContentsManager
-    'datalake': {
-        'access_key_id': os.environ.get("AWS_ACCESS_KEY_ID"),
-        'secret_access_key': os.environ.get("AWS_SECRET_ACCESS_KEY"),
-        'endpoint_url': os.environ.get("S3_ENDPOINT_URL"),
-        'bucket': 'valeria-users-' + os.environ.get("JUPYTERHUB_USER")
     }
 }
 
