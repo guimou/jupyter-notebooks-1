@@ -3,7 +3,7 @@ jupyterhub==1.0.0
 jupyterlab==1.0.4
 jupyter_kernel_gateway==2.3.0
 dask==1.2.2
-distributed==2.2.0
+distributed==1.28.1
 tornado==6.0.3
 botocore==1.12.205
 boto3==1.9.205
