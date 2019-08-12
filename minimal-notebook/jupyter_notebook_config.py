@@ -33,12 +33,12 @@ from s3contents import S3ContentsManager
 from pgcontents.hybridmanager import HybridContentsManager
 from notebook.services.contents.filemanager import FileContentsManager
 
-# We use HybridContentsManager (https://github.com/quantopian/pgcontents)
+# We use HybridContentsManager (https://github.com/quantopian/pgcontents),
 # FileContentsManager for accessing local volumes
 # and S3ContentsManager (https://github.com/danielfrg/s3contents) to connect to the datalake
 c.NotebookApp.contents_manager_class = HybridContentsManager
 
-# Intialize Hybrid Contents Manager with local silesystem, which is always there
+# Intialize Hybrid Contents Manager with local filesystem
 c.HybridContentsManager.manager_classes = {
     # Associate the root directory with a FileContentsManager.
     # This manager will receive all requests that don't fall under any of the
@@ -73,7 +73,7 @@ c.HybridContentsManager.manager_kwargs = {
 
 # Add datalake connections arguments
 if (aws_access_key_id and aws_access_key_id!='none'):
-    # We don't have to reinitialize the connection, thanks for "for" not being scoped
+    # We don't have to reinitialize the connection, thanks for previous "for" not being scoped
     # Enumerate all buckets and configure access
     for bucket in s3.buckets.all():
         c.HybridContentsManager.manager_kwargs.update({'datalake/'+bucket.name: {
