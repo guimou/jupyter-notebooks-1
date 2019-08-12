@@ -49,7 +49,7 @@ if (aws_access_key_id and aws_access_key_id!='none'):
                         aws_secret_access_key = aws_secret_access_key,
                         use_ssl = True if 'https' in endpoint_url else False )
     for bucket in s3.buckets.all():
-        HCM_mg.update({'datalake/'+bucket.name: S3ContentsManager})
+        HCM_mg.update({'datalake_'+bucket.name: S3ContentsManager})
 
 
 # Intialize Hybrid Contents Manager with local silesystem
@@ -65,7 +65,7 @@ HCM_mk = {
 if (aws_access_key_id and aws_access_key_id!='none'):
     # We don't have to reinitialize the connection, thanks for "for" not being scoped
     for bucket in s3.buckets.all():
-        HCM_mk.update({'datalake/'+bucket.name: {
+        HCM_mk.update({'datalake_'+bucket.name: {
             'access_key_id': aws_access_key_id,
             'secret_access_key': aws_secret_access_key,
             'endpoint_url': endpoint_url,
