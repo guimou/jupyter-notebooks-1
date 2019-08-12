@@ -61,7 +61,7 @@ if (aws_access_key_id and aws_access_key_id!='none'): # Make sure we have usable
                         use_ssl = True if 'https' in endpoint_url else False ) # Provides for test environment with no https
     # Enumerate all accessible buckets and create a folder entry in HybridContentsManager
     for bucket in s3.buckets.all():
-        c.HybridContentsManager.manager_classes.update({'datalake/'+bucket.name: S3ContentsManager})
+        c.HybridContentsManager.manager_classes.update({'datalake_'+bucket.name: S3ContentsManager})
 
 # Initalize arguments for local filesystem
 c.HybridContentsManager.manager_kwargs = {
@@ -76,7 +76,7 @@ if (aws_access_key_id and aws_access_key_id!='none'):
     # We don't have to reinitialize the connection, thanks for previous "for" not being scoped
     # Enumerate all buckets and configure access
     for bucket in s3.buckets.all():
-        c.HybridContentsManager.manager_kwargs.update({'datalake/'+bucket.name: {
+        c.HybridContentsManager.manager_kwargs.update({'datalake_'+bucket.name: {
             'access_key_id': aws_access_key_id,
             'secret_access_key': aws_secret_access_key,
             'endpoint_url': endpoint_url,
