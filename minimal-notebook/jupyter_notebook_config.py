@@ -53,11 +53,12 @@ if (aws_access_key_id and aws_access_key_id!='none'):
 
 
 # Intialize Hybrid Contents Manager with local silesystem
+
 c.HybridContentsManager.manager_classes = HCM_mg
 
 HCM_mk = {
     # Args for the FileContentsManager mapped to /directory
-    'directory': {
+    '': {
         'root_dir': '/users'
     }
 }
