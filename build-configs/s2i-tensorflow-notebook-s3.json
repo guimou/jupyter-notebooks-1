@@ -27,7 +27,7 @@
             "kind": "BuildConfig",
             "apiVersion": "build.openshift.io/v1",
             "metadata": {
-                "name": "s2i-tensorflow-notebook-py36-s3",
+                "name": "s2i-tensorflow-notebook-s3",
                 "labels": {
                     "build": "s2i-tensorflow-notebook-s3"
                 }
@@ -56,7 +56,7 @@
                             "kind": "ImageStreamTag",
                             "name": "s2i-minimal-notebook-s3:3.6"
                         },
-                        "dockerfilePath": "Dockerfile-py36"
+                        "dockerfilePath": "Dockerfile"
                     }
                 },
                 "output": {

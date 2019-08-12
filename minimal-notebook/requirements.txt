@@ -1,8 +1,13 @@
-notebook==5.7.4
+notebook==5.7.8
 jupyterhub==1.0.0
-jupyterlab==0.35.4
-jupyter_kernel_gateway==2.2.0
-dask==1.1.1
-distributed==1.26.0
-tornado<6.0.0
+jupyterlab==1.0.4
+jupyter_kernel_gateway==2.3.0
+dask==1.2.2
+distributed==1.28.1
+tornado==6.0.3
+botocore==1.12.205
+boto3==1.9.205
+# pgcontents==0.5.3 Real old version with no support for NB v5
+git+https://github.com/guimou/pgcontents.git@master
 s3contents==0.1.13
+fsspec==0.4.1
