@@ -27,6 +27,8 @@ from s3contents import S3ContentsManager
 from pgcontents.hybridmanager import HybridContentsManager
 from notebook.services.contents.filemanager import FileContentsManager
 
+c.NotebookApp.contents_manager_class = HybridContentsManager
+
 HCM_mg = {
     # Associate the root directory with a FileContentsManager.
     # This manager will receive all requests that don't fall under any of the
