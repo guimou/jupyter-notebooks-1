@@ -52,7 +52,7 @@ aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
 endpoint_url = os.environ.get("S3_ENDPOINT_URL")
 
 # Add datalake connection information
-if (aws_access_key_id and aws_access_key_id!='none'): # Make sure we have usable S3 informations are there before configuring
+if (aws_access_key_id and aws_access_key_id!=None): # Make sure we have usable S3 informations are there before configuring
     # Initialize S3 connection (us-east-1 seems to be needed even when it is not used, in Ceph for example)
     s3 = boto3.resource('s3','us-east-1',
                         endpoint_url=endpoint_url,
@@ -72,7 +72,7 @@ c.HybridContentsManager.manager_kwargs = {
 }
 
 # Add datalake connections arguments
-if (aws_access_key_id and aws_access_key_id!='none'):
+if (aws_access_key_id and aws_access_key_id!=None):
     # We don't have to reinitialize the connection, thanks for previous "for" not being scoped
     # Enumerate all buckets and configure access
     for bucket in s3.buckets.all():
