@@ -14,17 +14,10 @@
                 },
                 "tags": [
                     {
-                        "name": "3.5",
+                        "name": "prod",
                         "from": {
                             "kind": "DockerImage",
-                            "name": "quay.io/jupyteronopenshift/s2i-minimal-notebook-py35:master"
-                        }
-                    },
-                    {
-                        "name": "3.6",
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "quay.io/jupyteronopenshift/s2i-minimal-notebook-py36:master"
+                            "name": "ulaval/s2i-minimal-notebook-s3:prod"
                         }
                     }
                 ]
