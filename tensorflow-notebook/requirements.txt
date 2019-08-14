@@ -29,9 +29,12 @@ s3contents==0.1.12
 opencv-contrib-python-headless==4.1.*
 pydotplus==2.0.*
 resampy==0.2.*
+imutils==0.5.*
+filterpy==1.4.*
+mysql-connector==2.2.*
+psycopg2==2.8.*
 
 ### tensorflow-notebook
 
 tensorflow==1.13.*
 keras==2.2.*
-

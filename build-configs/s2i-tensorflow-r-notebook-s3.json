@@ -6,9 +6,9 @@
             "kind": "ImageStream",
             "apiVersion": "image.openshift.io/v1",
             "metadata": {
-                "name": "s2i-tensorflow-exp-s3",
+                "name": "s2i-tensorflow-r-notebook-s3",
                 "labels": {
-                    "build": "s2i-tensorflow-exp-s3"
+                    "build": "s2i-tensorflow-r-notebook-s3"
                 }
             },
             "spec": {
@@ -27,9 +27,9 @@
             "kind": "BuildConfig",
             "apiVersion": "build.openshift.io/v1",
             "metadata": {
-                "name": "s2i-exp-notebook-s3",
+                "name": "s2i-tensorflow-r-notebook-s3",
                 "labels": {
-                    "build": "s2i-tensorflow-exp-s3"
+                    "build": "s2i-tensorflow-r-notebook-s3"
                 }
             },
             "spec": {
@@ -44,17 +44,17 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/guimou/jupyter-notebooks-s3",
+                        "uri": "https://github.com/ulaval/valeria-jupyter-notebooks-s3",
                         "ref": "master"
                     },
-                    "contextDir": "exp-notebook"
+                    "contextDir": "tensorflow-r-notebook"
                 },
                 "strategy": {
                     "type": "Docker",
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook-s3:3.6"
+                            "name": "s2i-minimal-notebook-s3:prod"
                         },
                         "dockerfilePath": "Dockerfile"
                     }
@@ -62,7 +62,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "s2i-tensorflow-exp-s3:3.6"
+                        "name": "s2i-tensorflow-r-notebook-s3:prod"
                     }
                 },
                 "resources": {

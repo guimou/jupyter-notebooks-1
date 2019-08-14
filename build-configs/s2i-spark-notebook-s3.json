@@ -44,7 +44,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/mayeuldalzon/jupyter-notebooks-s3",
+                        "uri": "https://github.com/ulaval/valeria-jupyter-notebooks-s3",
                         "ref": "master"
                     },
                     "contextDir": "spark-notebook"
@@ -54,7 +54,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook-s3:3.6"
+                            "name": "s2i-minimal-notebook-s3:prod"
                         },
                         "dockerfilePath": "Dockerfile"
                     }
@@ -62,7 +62,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "s2i-spark-notebook-s3:3.6"
+                        "name": "s2i-spark-notebook-s3:prod"
                     }
                 },
                 "resources": {

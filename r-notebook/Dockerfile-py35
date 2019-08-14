@@ -1,4 +1,4 @@
-FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py35:master
+FROM centos/python-35-centos7:latest
 
 USER root
 
@@ -9,13 +9,7 @@ RUN rm -rf /tmp/src/.git* && \
     chgrp -R 0 /tmp/src && \
     chmod -R g+w /tmp/src && \
     rm -rf /tmp/scripts && \
-    mv /tmp/src/.s2i/bin /tmp/scripts && \
-    yum update -y && \
-    yum install -y graphviz && \
-    yum clean all && \
-    rm -rf /var/cache/yum
-
-ENV XDG_CACHE_HOME=/opt/app-root/src/.cache
+    mv /tmp/src/.s2i/bin /tmp/scripts
 
 USER 1001
 
