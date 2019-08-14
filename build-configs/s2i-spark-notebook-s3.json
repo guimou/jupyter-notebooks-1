@@ -54,7 +54,7 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook-s3:prod"
+                            "name": "ulaval/s2i-minimal-notebook-s3:prod"
                         },
                         "dockerfilePath": "Dockerfile"
                     }
