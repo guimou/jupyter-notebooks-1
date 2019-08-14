@@ -1,4 +1,4 @@
-FROM gmoutier/minimal-notebook-s3:3.6
+FROM ulaval/s2i-minimal-notebook-s3:prod
 
 USER root
 

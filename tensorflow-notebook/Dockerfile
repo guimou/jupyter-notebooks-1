@@ -1,4 +1,4 @@
-FROM docker-registry.default.svc:5000/jupyterhubul/s2i-minimal-notebook-s3:3.6
+FROM ulaval/s2i-minimal-notebook-s3:prod
 
 USER root
 

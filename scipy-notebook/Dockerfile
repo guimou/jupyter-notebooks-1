@@ -1,4 +1,4 @@
-FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36:master
+FROM ulaval/s2i-minimal-notebook-s3:prod
 
 USER root
 
