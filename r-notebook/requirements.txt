@@ -1,2 +1,22 @@
 ### r-notebook
 
+ipywidgets==7.2.*
+pandas==0.23.*
+numexpr==2.6.*
+matplotlib==2.2.*
+seaborn==0.9.*
+sympy==1.1.*
+cython==0.28.*
+patsy==0.5.*
+statsmodels==0.9.*
+cloudpickle==0.5.*
+dill==0.2.*
+numba==0.38.*
+bokeh==0.13.*
+#hdf5==1.10.*
+sqlalchemy==1.2.*
+h5py==2.7.*
+vincent==0.4.*
+beautifulsoup4==4.6.*
+xlrd==1.2.*
+protobuf==3.*
