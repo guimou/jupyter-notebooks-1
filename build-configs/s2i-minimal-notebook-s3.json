@@ -34,7 +34,7 @@
                     "type": "Git",
                     "git": {
                         "uri": "https://github.com/ulaval/valeria-jupyter-notebooks-s3",
-                        "ref": "master"
+                        "ref": "prod"
                     },
                     "contextDir": "minimal-notebook"
                 },

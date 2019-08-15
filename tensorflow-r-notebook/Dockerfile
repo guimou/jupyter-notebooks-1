@@ -1,4 +1,4 @@
-FROM centos/python-36-centos7:latest
+FROM ulaval/s2i-minimal-notebook-s3:prod
 
 USER root
 
@@ -12,14 +12,17 @@ RUN rm -rf /tmp/src/.git* && \
     mv /tmp/src/.s2i/bin /tmp/scripts
     
 RUN yum install -y libXrender
-	
+    
 USER 1001
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 RUN chmod +x Miniconda3-latest-Linux-x86_64.sh && ./Miniconda3-latest-Linux-x86_64.sh -b
 
-RUN /opt/app-root/src/miniconda3/bin/conda install -y -c r r-irkernel
+RUN /opt/app-root/src/miniconda3/bin/conda install -y -c r \
+     r-markdown \
+     r-sparklyr \
+     r-irkernel \
 
 RUN echo "IRkernel::installspec()" > /tmp/install.r && /opt/app-root/src/miniconda3/bin/R -f /tmp/install.r 
 
@@ -45,7 +48,7 @@ RUN /opt/app-root/src/miniconda3/bin/conda install --quiet --yes \
     'r-hexbin=1.27*' && \
     /opt/app-root/src/miniconda3/bin/conda clean --all -f -y && \
     fix-permissions $CONDA_DIR
-
+	
 USER 1001
 
 RUN /tmp/scripts/assemble
