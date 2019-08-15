@@ -1,4 +1,4 @@
-FROM ulaval/s2i-minimal-notebook-s3:prod
+FROM centos/python-36-centos7:latest
 
 USER root
 
