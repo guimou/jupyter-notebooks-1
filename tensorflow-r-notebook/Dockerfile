@@ -22,7 +22,7 @@ RUN chmod +x Miniconda3-latest-Linux-x86_64.sh && ./Miniconda3-latest-Linux-x86_
 RUN /opt/app-root/src/miniconda3/bin/conda install -y -c r \
      r-markdown \
      r-sparklyr \
-     r-irkernel \
+     r-irkernel
 
 RUN echo "IRkernel::installspec()" > /tmp/install.r && /opt/app-root/src/miniconda3/bin/R -f /tmp/install.r 
 
