@@ -48,7 +48,9 @@ RUN /opt/app-root/src/miniconda3/bin/conda install --quiet --yes \
     'r-hexbin=1.27*' && \
     /opt/app-root/src/miniconda3/bin/conda clean --all -f -y && \
     fix-permissions $CONDA_DIR
-	
+
+RUN mkdir opt/app-root/data/Rpackages && echo "R_LIBS=opt/app-root/data/Rpackages" > /opt/app-root/src/.Renviron
+
 USER 1001
 
 RUN /tmp/scripts/assemble
