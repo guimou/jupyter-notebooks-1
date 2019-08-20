@@ -33,6 +33,7 @@ imutils==0.5.*
 filterpy==1.4.*
 mysql-connector==2.2.*
 psycopg2==2.8.*
+torch==1.0.*
 
 ### tensorflow-notebook
 
