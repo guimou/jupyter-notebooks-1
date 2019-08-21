@@ -11,10 +11,12 @@ RUN rm -rf /tmp/src/.git* && \
     rm -rf /tmp/scripts && \
     mv /tmp/src/.s2i/bin /tmp/scripts
     
-RUN yum install -y libXrender
+ENV PATH="/opt/app-root/src/miniconda3/bin:${PATH}"
     
-USER 1001
+RUN yum install -y libXrender
 
+USER 1001
+    
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 RUN chmod +x Miniconda3-latest-Linux-x86_64.sh && ./Miniconda3-latest-Linux-x86_64.sh -b && rm Miniconda3-latest-Linux-x86_64.sh
@@ -22,7 +24,8 @@ RUN chmod +x Miniconda3-latest-Linux-x86_64.sh && ./Miniconda3-latest-Linux-x86_
 RUN /opt/app-root/src/miniconda3/bin/conda install -y -c r \
      r-markdown \
      r-sparklyr \
-     r-irkernel
+     r-irkernel \
+     gxx_linux-64
 
 RUN echo "IRkernel::installspec()" > /tmp/install.r && /opt/app-root/src/miniconda3/bin/R -f /tmp/install.r 
 
@@ -49,10 +52,10 @@ RUN /opt/app-root/src/miniconda3/bin/conda install --quiet --yes \
     /opt/app-root/src/miniconda3/bin/conda clean --all -f -y && \
     fix-permissions $CONDA_DIR
 
-RUN mkdir /opt/app-root/data/Rpackages && echo "R_LIBS=/opt/app-root/data/Rpackages" > /opt/app-root/src/.Renviron
-
 USER 1001
 
 RUN /tmp/scripts/assemble
+
+RUN mkdir '/users/home/${JUPYTERHUB_USER}/Rpackages' && echo -e 'R_LIBS=/users/home/${JUPYTERHUB_USER}/Rpackages' > /opt/app-root/src/.Renviron
 
 CMD [ "/opt/app-root/builder/run" ]
