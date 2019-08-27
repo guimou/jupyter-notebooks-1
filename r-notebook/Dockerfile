@@ -56,6 +56,6 @@ USER 1001
 
 RUN /tmp/scripts/assemble
 
-RUN mkdir '/users/home/${JUPYTERHUB_USER}/Rpackages' && echo -e 'R_LIBS=/users/home/${JUPYTERHUB_USER}/Rpackages' > /opt/app-root/src/.Renviron
+RUN echo -e 'R_LIBS=/users/home/${JUPYTERHUB_USER}/R' > /opt/app-root/src/.Renviron
 
 CMD [ "/opt/app-root/builder/run" ]
