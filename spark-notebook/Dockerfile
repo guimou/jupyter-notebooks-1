@@ -22,7 +22,7 @@ RUN yum install -y java-1.8.0-openjdk wget \
 # Add all artifacts to the /tmp/artifacts
 # directory
 
-RUN wget -P /tmp/artifacts/ https://archive.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz
+RUN wget -P /tmp/artifacts/ https://archive.apache.org/dist/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz
 
 # Environment variables
 ENV \
